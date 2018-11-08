@@ -1,0 +1,26 @@
+{
+  "name": "mongoose-data-generator",
+  "version": "1.0.0",
+  "description": "A simple package that reads your project's Mongoose schema files and generates as much data as required, accordingly.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hashlab/mongoose-data-generator.git"
+  },
+  "keywords": [
+    "mongoose",
+    "hash",
+    "hashlab",
+    "data-generator",
+    "npm"
+  ],
+  "author": "Caio Elias",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hashlab/mongoose-data-generator/issues"
+  },
+  "homepage": "https://github.com/hashlab/mongoose-data-generator#readme"
+}
