@@ -22,5 +22,26 @@
   "bugs": {
     "url": "https://github.com/hashlab/mongoose-data-generator/issues"
   },
-  "homepage": "https://github.com/hashlab/mongoose-data-generator#readme"
+  "homepage": "https://github.com/hashlab/mongoose-data-generator#readme",
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "dependency-graph": "^0.7.2",
+    "fs-extra": "^7.0.1",
+    "module-alias": "^2.1.0",
+    "mongoose": "^5.3.10",
+    "mongoose-auto-increment": "^5.0.1",
+    "mongoose-time": "^0.1.0",
+    "require-all": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5"
+  },
+  "_moduleAliases": {
+    "@config": "./config",
+    "@schemas": "./schemas",
+    "@source": "./src",
+    "@services": "./src/services"
+  }
 }
