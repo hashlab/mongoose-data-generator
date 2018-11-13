@@ -1,20 +1,53 @@
-require("module-alias/register");
-const Promise = require("bluebird");
-const config = require("@config/config");
-const BabelService = require("@services/babel");
-const logger = require("@services/logging").logger;
+require('module-alias/register');
+const Promise = require('bluebird');
+const config = require('@config/config');
+const BabelService = require('@services/babel');
+const logger = require('@services/logging').logger;
+const FileSystemService = require('@services/filesystem');
 
-Promise.resolve(config.schemasInputDir)
-  .then(BabelService.transformDirectoryAsync)
+const tempSchemasDir =
+  '/home/celias/npm-modules/mongoose-data-generator/schemas/originals/';
+const schemasDir = config.schemasInputDir;
+
+Promise.resolve()
+  .then(parseSchemas)
   .then(importSchemas);
 
+function parseSchemas() {
+  return Promise.resolve()
+    .then(createTempDir)
+    .then(copyDir)
+    .then(transformSchemas)
+    .then(removeTempDir);
+
+  function createTempDir() {
+    return FileSystemService.mkdirAsync(tempSchemasDir);
+  }
+
+  function copyDir() {
+    return FileSystemService.copyAsync(schemasDir, tempSchemasDir);
+  }
+
+  function transformSchemas() {
+    return BabelService.transformDirectoryAsync(
+      tempSchemasDir,
+      config.schemasOutputDir
+    );
+  }
+
+  function removeTempDir() {
+    logger('Finished parsing schemas');
+    return FileSystemService.removeAsync(tempSchemasDir);
+  }
+}
+
 function importSchemas() {
-  const schemas = require("require-all")({
+  const schemas = require('require-all')({
     dirname: config.schemasOutputDir,
     // filter: /(.+Controller)\.js$/,
     // excludeDirs: /^\.(git|svn)$/,
     recursive: true
   });
 
-  logger(schemas)
+  logger(schemas);
 }
